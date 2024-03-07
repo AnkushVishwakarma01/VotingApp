@@ -1,0 +1,20 @@
+Round 1 Task
+1. (Done) Add Nav bar for home, register, login.
+2. (Done) Input field Validation (show error msg when required field is empty).
+3. (Done) remove candidate list when user already voted and show msg.
+4. (Done) make email unique.
+5. (Done) login with email and password remove username field.
+6. (Done) show message if user already exist with a same email in registeration page.
+7. (DOne) show message if user not exist with a same email in login page.
+
+Round 2 Task
+1. (Done) add enable and disable btn for toggle the voting.
+    steps: 1. add enable and disable btn.
+           2. add is_voting_end field in candidates0.
+           3. make that field true when admin click disable.
+           4. OR make that field false when admin click active.
+2. (Done) user should get the message of winner candidate with vote count when admin disable.
+    steps: 1. before rendering index page check if voting is voting not end.
+           2. if available show normal candidates list.
+           3. OR winner candidate with votecount.
+3. (Done) when voting is enable by admin toggle for normal voting system.

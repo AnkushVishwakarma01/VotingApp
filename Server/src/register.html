@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting App</title>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a class="navbtn" href="./home">Home</a></li>
+                <li><a class="navbtn" href="./register">Register</a></li>
+                <li><a class="navbtn" href="./">Login</a></li>
+            </ul>
+        </nav>
+        <form action="" id="registerHandler">
+            <div class="msg_block hide" id="message">
+                <h3 style="color: red;">User Already exist</h3>
+            </div>
+            <div class='input_field'>
+                <input class='margin-10 padding-10' type="text" name="username" id="username"
+                    placeholder='USERNAME' minlength="5" maxlength="15" required/><br />
+                <input class='margin-10 padding-10' type="password" name="password" id="password"
+                    placeholder='PASSWORD' minlength="5" maxlength="10" required/><br />
+                <input class='margin-10 padding-10' type="email" name="email" id="email" placeholder='EMAIL ID' required /><br />
+                <input class='margin-10 padding-10' type="text" name='phone_no' id='phone_no' placeholder='PHONE NO' required/>
+            </div>
+            <div class='btn_field'>
+                <input class='margin-10 btn' type="submit" value="Register" />
+                <a class='margin-10 btn anchorbtn' href="./">Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="./js/register.js"></script>
+</body>
+
+</html>

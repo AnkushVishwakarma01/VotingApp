@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting App</title>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a class="navbtn" href="./home">Home</a></li>
+                <li><a class="navbtn" href="./register">Register</a></li>
+                <li><a class="navbtn" href="./">Login</a></li>
+            </ul>
+        </nav>
+        <ul id="candidateDetailBlock">
+        </ul>
+        <button class="margin-10 btn" onclick="openVoting()" id="enableBtn">Enable</button>
+        <button class="margin-10 btn" onclick="closeVoting()" id="disableBtn" >Disable</button>
+        <button class="margin-10 btn" onclick="logout()">Logout</button>
+    </div>
+
+
+    <script src="./js/admin.js"></script>
+</body>
+
+</html>

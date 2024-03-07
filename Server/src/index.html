@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting App</title>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a class="navbtn" href="./home">Home</a></li>
+                <li><a class="navbtn" href="./register">Register</a></li>
+                <li><a class="navbtn" href="./">Login</a></li>
+            </ul>
+        </nav>
+        <form action="" id="candidateVoting">
+            <div class="msg_block" id="message">
+                <h3>Loading...</h3>
+            </div>
+            <ul class="hide" id="candidates">
+                <li><input type="radio" name="candidate" value="Candidate 1"><label for="candidate">candidate 1</label></li>
+                <li><input type="radio" name="candidate" value="Candidate 2"><label for="candidate">candidate 2</label></li>
+                <li><input type="radio" name="candidate" value="Candidate 3"><label for="candidate">candidate 3</label></li>
+                <li><input type="radio" name="candidate" value="Candidate 4"><label for="candidate">candidate 4</label></li>
+                <input class='margin-10 btn' type="submit" value="Vote" id="votebtn">
+            </ul>
+        </form>
+        <button class="btn margin-10 hide" id="logoutbtn" onclick="logout()">Logout</button>
+    </div>
+
+
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
