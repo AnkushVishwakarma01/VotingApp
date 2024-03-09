@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import NavBar from "./navbar";
 
 async function checkSession({ token, setMsg, setMsgVisible, setPage, setContentVisible, setLogoutVisible }) {
     if (token) {
@@ -55,11 +54,10 @@ function MsgBlock({ message, expression }) {
     )
 }
 
-export default function HomePage({ cb, callback1, callback2, callback3 }) {
+export default function HomePage(props) {
     const [message, setMessage] = useState("");
     const [isMessageVisible, setMessageVisible] = useState(true);
     const [isContentVisible, setContentVisible] = useState(false);
-    const [isLogoutBtnVisible, setLogoutVisible] = useState(false);
     const token = localStorage.getItem('votingApp');
 
     //handling submit event.
@@ -68,7 +66,6 @@ export default function HomePage({ cb, callback1, callback2, callback3 }) {
 
         const candidate = e.target.candidate.value
         const token = localStorage.getItem("votingApp");
-        console.log(candidate, token);
 
         const request = await fetch("/voting_app_backend/updateUserAndCandidate", {
             method: "PUT",
@@ -83,32 +80,28 @@ export default function HomePage({ cb, callback1, callback2, callback3 }) {
         })
 
         const response = await request.json();
-        console.log(response);
+
         if (response.statusCode === 200) {
+            setMessageVisible(true);
+            setMessage("Succesfully Voted!");
             setContentVisible(false);
-            setLogoutVisible(true);
+            props.setLogoutVisible(true);
         }
     };
-
-    function logout() {
-        localStorage.removeItem("votingApp");
-        cb("login");
-    }
 
     useEffect(() => {
         checkSession({
             token: token,
             setMsg: setMessage,
             setMsgVisible: setMessageVisible,
-            setPage: cb,
+            setPage: props.setPage,
             setContentVisible: setContentVisible,
-            setLogoutVisible: setLogoutVisible
+            setLogoutVisible: props.setLogoutVisible
         });
     }, [])
 
     return (
-        <div className="container">
-            <NavBar callback1={callback1} callback2={callback2} callback3={callback3} />
+        <>
             <form action="" onSubmit={votinghandler}>
                 <MsgBlock message={message} expression={isMessageVisible} />
                 <ul style={{
@@ -121,13 +114,6 @@ export default function HomePage({ cb, callback1, callback2, callback3 }) {
                     <input className='margin-10 btn' type="submit" value="Vote" id="votebtn" />
                 </ul>
             </form>
-            <button style={{
-                padding: "10px 22px",
-                backgroundColor: "lightgray",
-                border: "none",
-                margin: "10px",
-                display: isLogoutBtnVisible ? "block" : "none"
-            }} id="logoutbtn" onClick={logout}>Logout</button>
-        </div>
+        </>
     )
 }

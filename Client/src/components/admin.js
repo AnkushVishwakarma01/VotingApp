@@ -1,6 +1,5 @@
 import '../index.css';
 import { useState, useEffect } from "react";
-import NavBar from './navbar';
 
 async function checkSession(setEnableBtn, setDisableBtn) {
     const requestCandidate0 = await fetch('/voting_app_backend/fetchCandidate0');
@@ -64,7 +63,7 @@ function VotingToggleBtn({ text, cb, expression }) {
     )
 }
 
-export default function AdminPage({ cb, callback1, callback2, callback3 }) {
+export default function AdminPage(props) {
     const [listOfCandidates, setListOfCandidates] = useState("");
     const [isEnableBtnActive, setEnableBtnActive] = useState(false);
     const [isDisableBtnActive, setDisableBtnActive] = useState(false);
@@ -77,25 +76,18 @@ export default function AdminPage({ cb, callback1, callback2, callback3 }) {
         closeVoting(setEnableBtnActive, setDisableBtnActive);
     }
 
-    function logout(){
-        localStorage.removeItem("votingApp");
-        cb("login");
-    }
-
     useEffect(() => {
         checkSession(setEnableBtnActive, setDisableBtnActive);
         loadData(setListOfCandidates);
     }, []);
 
     return (
-        <div className="container">
-            <NavBar callback1={callback1} callback2={callback2} callback3={callback3} />
+        <>
             <ul id="candidateDetailBlock">
                 {listOfCandidates}
             </ul>
             <VotingToggleBtn text={"Enable"} cb={callOpenVotingFunc} expression={isEnableBtnActive} />
             <VotingToggleBtn text={"Disable"} cb={callCloseVotingFunc} expression={isDisableBtnActive} />
-            <button className="margin-10 btn" onClick={logout}>Logout</button>
-        </div>
+        </>
     )
 }

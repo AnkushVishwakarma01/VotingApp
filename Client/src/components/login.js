@@ -1,11 +1,10 @@
 import '../index.css';
-import NavBar from './navbar';
 import { useState } from 'react';
 
-export default function LoginPage({ cb, callback1, callback2, callback3 }) {
+export default function LoginPage(props) {
     const [isMessageVisible, setMessageVisible] = useState(false);
 
-    const loginHandler = async (e, setPage) => {
+    const loginHandler = async (e) => {
         e.preventDefault();
 
         const email = e.target.email.value;
@@ -32,21 +31,24 @@ export default function LoginPage({ cb, callback1, callback2, callback3 }) {
         if (response.statusCode === 200) {
             if (response.data.username === "admin") {
                 localStorage.setItem("votingApp", response.data.token);
-                cb("admin");
+                props.setPage("admin");
             } else {
                 localStorage.setItem("votingApp", response.data.token);
-                cb("home");
+                props.setPage("home");
             }
         }
     }
 
-    function hideMsg(){
-        if(isMessageVisible) setMessageVisible(false);
+    function gotoregister() {
+        props.setPage("register");
+    }
+
+    function hideMsg() {
+        if (isMessageVisible) setMessageVisible(false);
     }
 
     return (
-        <div className="container">
-            <NavBar callback1={callback1} callback2={callback2} callback3={callback3} />
+        <>
             <form action="" onSubmit={loginHandler}>
                 <div style={{
                     textAlign: "center",
@@ -62,9 +64,9 @@ export default function LoginPage({ cb, callback1, callback2, callback3 }) {
                 </div>
                 <div className='btn_field'>
                     <input className='margin-10 btn' type="submit" value="Login" />
-                    <a className='margin-10 btn anchorbtn' href="./register">Register</a>
+                    <button className='margin-10 btn' onClick={gotoregister}>Register</button>
                 </div>
             </form>
-        </div>
+        </>
     );
 } 
